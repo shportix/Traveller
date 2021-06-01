@@ -1,7 +1,121 @@
-import 'package:flutter/material.dart';
+//import 'dart:js';
 
-void main() {
-  runApp(MyApp());
+import 'package:flutter/material.dart';
+import 'package:traveller/main2.dart';
+class MyButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        print('MyButton was tapped!');
+      },
+      child: Container(
+        height: 50.0,
+        padding: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          color: Colors.lightGreen[500],
+        ),
+        child: Center(
+          child: Text('Engage'),
+        ),
+      ),
+    );
+  }
+}
+
+void main() => runApp(App());
+
+class App extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      //title: 'Flutter Navigation',
+      home: MainPage(),
+    //  theme: new ThemeData(primarySwatch: Color.fromARGB(255, 255, 139, 0)),
+    );
+  }
+}
+//void main() {
+  //runApp(MyApp());
+  /*runApp(Container(
+
+    color: Colors.white,
+    padding: EdgeInsets.only(top:25),
+    child: Image.asset("images/first.png", fit:BoxFit.fill),
+  ),
+  );*/
+  /* runApp(Container(
+
+      color: Colors.white,
+      padding: EdgeInsets.only(top:25),
+  child:IconButton(
+    onPressed: () {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MainPage()));
+    },
+    icon: Image.asset(
+      'images/Da.png',
+      height: 100,
+      width: 100,
+      fit: BoxFit.cover,
+    ),
+  )
+  ),
+  );
+
+  runApp( Container(child: ConstrainedBox(
+      constraints: BoxConstraints.expand(),
+      child: FlatButton(
+          onPressed: null,
+          padding: EdgeInsets.all(0.0),
+          child: Image.asset('images/first.png'))))
+  );*/
+  /*IconButton(
+    onPressed: () {
+      Navigator.pushNamed(context, '/main2');
+    },
+    icon: Image.asset(
+      'images/Da.png',
+      height: 100,
+      width: 100,
+      fit: BoxFit.cover,
+    ),
+  );
+}*/
+class MainPage extends StatelessWidget {
+  get background => null;
+
+  Future navigateToSubPage(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => SubPage()));
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+     // appBar: AppBar(
+      //  title: Text('Main Page'),
+      backgroundColor: Color.fromARGB(255, 255, 139, 0),
+      // ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            //Text('Click button to move to SubPage'),
+            RaisedButton(
+              //textColor: Colors.white,
+              color: Color.fromARGB(255, 255, 139, 0),
+              child: Image.asset('images/first.png', fit:BoxFit.fill),
+              onPressed: () {
+                navigateToSubPage(context);
+              },
+            )
+          ],
+        ),
+
+      ),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
