@@ -28,7 +28,8 @@ class MyBottomBarDemo extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyBottomBarDemo> {
-  // This navigator state will be used to navigate different pages
+  // This navigator state will 
+  //be used to navigate different pages
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   int _currentTabIndex = 0;
 
@@ -80,9 +81,7 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
     switch (settings.name) {
       case "Favorite":
         return MaterialPageRoute(builder: (context) => Container(
-           /* color: Colors.blue,
-            child: Center(
-                child: Text("Favorite")*/
+           
             child: TabBarDemo(),
             )
 
@@ -108,7 +107,7 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
                   height:400,
                   width: 350,
                    child: Column(  children:  <Widget>[
-                    //SubPage3(),
+                    
                    Row( children: <Widget>[  Column(  children:  <Widget>[
                     Text('  МІСТО ПОЧАТКУ ТУРУ '),
                     MyStatefulWidget(),
