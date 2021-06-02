@@ -1,4 +1,240 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'faventry.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyBottomBarDemo(title: 'Flutter Demo Home Page', key: null,),
+    );
+  }
+}
+
+class MyBottomBarDemo extends StatefulWidget {
+  MyBottomBarDemo({required key, required this.title}) : super(key: key);
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyBottomBarDemo> {
+  // This navigator state will be used to navigate different pages
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+  int _currentTabIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Navigator(key: _navigatorKey, onGenerateRoute: generateRoute),
+        bottomNavigationBar: _bottomNavigationBar(),
+      ),
+    );
+  }
+
+  Widget _bottomNavigationBar() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      items: [
+        BottomNavigationBarItem(icon: Icon(Icons.map), title: Text("Головна"),),
+        BottomNavigationBarItem(icon: Icon(Icons.favorite), title: Text("Обране")),
+        BottomNavigationBarItem(icon: Icon(Icons.help_outline), title: Text("Підтримка")),
+        BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Профіль"),)
+      ],
+      onTap: _onTap,
+      currentIndex: _currentTabIndex,
+    );
+  }
+
+  _onTap(int tabIndex) {
+    switch (tabIndex) {
+      case 0:
+        _navigatorKey.currentState!.pushReplacementNamed("Main");
+        break;
+      case 1:
+        _navigatorKey.currentState!.pushReplacementNamed("Favorite");
+        break;
+      case 2:
+        _navigatorKey.currentState!.pushReplacementNamed("Help");
+        break;
+      case 3:
+        _navigatorKey.currentState!.pushReplacementNamed("Account");
+        break;
+    }
+    setState(() {
+      _currentTabIndex = tabIndex;
+    });
+  }
+
+  Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case "Favorite":
+        return MaterialPageRoute(builder: (context) => Container(
+           /* color: Colors.blue,
+            child: Center(
+                child: Text("Favorite")*/
+            child: TabBarDemo(),
+            )
+
+        );
+      case "Help":
+        return MaterialPageRoute(builder: (context) => Container(color: Colors.green,child: Center(child: Text("Help"))));
+      case "Account":
+        return MaterialPageRoute(builder: (context) => Container(color: Colors.green,child: Center(child: Text("Account"))));
+      default:
+        return MaterialPageRoute(builder: (context) =>Scaffold( appBar: AppBar(
+          leading: new Container(),
+          title: Image.asset('images/travellerua.png', fit:BoxFit.fill),
+          backgroundColor: Color.fromARGB(255, 255, 139, 0),
+        ),
+            body: Center(
+            child:  Container(
+              height:1000,
+              child: Column(
+
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:  <Widget>[
+                Container(
+                  height:400,
+                  width: 350,
+                   child: Column(  children:  <Widget>[
+                    //SubPage3(),
+                   Row( children: <Widget>[  Column(  children:  <Widget>[
+                    Text('  МІСТО ПОЧАТКУ ТУРУ '),
+                    MyStatefulWidget(),
+                   ]
+                   ),
+                     Text('              '),
+                     Column(  children:  <Widget>[
+                  Text('МІСТО, КУРОРТ'),
+                  MyStatefulWidget(),
+                 ]),
+                 // SubPage4(),
+                  ] ),
+                  Container(
+                    height: 50,
+                    child: Text('\nДАТА ВИРУШЕННЯ '),
+                  ),
+                    MyApp1(),
+                    Text('КІЛЬКІСТЬ НОЧЕЙ '),
+                    MyApp2(),
+                    Text('КІЛЬКІСТЬ ДОРОСЛИХ '),
+                    MyApp2(),
+                    Text('КІЛЬКІСТЬ ДІТЕЙ '),
+                    MyApp2(),
+                  ],
+                  ),
+                ),
+
+                ButtonTheme(
+                  minWidth: 350.0,
+                  height: 50.0,
+                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
+                  child:
+                  RaisedButton(
+                    textColor: Colors.white,
+                    color: Color.fromARGB(255, 255, 139, 0),
+                    child: Text('З Н А Й Т И   Т У Р И'),
+                    onPressed: () {
+                      // TODO
+                    },
+                  ),
+                ),
+                SubPage2(),
+              ],
+            ),
+            ),
+            ),
+        ),
+        );
+    }
+  }
+}
+//////////////////////Обране ///////////////////////////////
+class TabBarDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Image.asset('images/travellerua.png', fit:BoxFit.fill),
+            backgroundColor: Color.fromARGB(255, 255, 139, 0),
+            bottom:
+              TabBar(
+                tabs: [
+                  Tab(child: Text("ТУРИ")),
+                  Tab(icon: Text("БІЛЕТИ")),
+                  Tab(icon: Text("ГОТЕЛІ")),
+                  Tab(icon: Text("ІНШЕ")),
+                ],
+            ),
+          ),
+          body: TabBarView(
+            children: [
+              Icon(Icons.account_balance_outlined),
+              Icon(Icons.airplane_ticket),
+              Icon(Icons.hotel_outlined),
+              Icon(Icons.apps),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+//////////////////////Обране ///////////////////////////////
+/// This is the stateful widget that the main application instantiates.
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+/// This is the private State class that goes with MyStatefulWidget.
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  String dropdownValue = 'Харків';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      icon: const Icon(Icons.arrow_downward),
+      iconSize: 24,
+      elevation: 16,
+      style: const TextStyle(color: Colors.black54,  fontSize: 20,),
+      underline: Container(
+        height: 2,
+        color: Colors.black,
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          dropdownValue = newValue!;
+        });
+      },
+      items: <String>['Харків', 'Київ', 'Дніпро', 'Запоріжжя']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+}
+
+/*
 
   class SubPage extends StatelessWidget {
     int _currentIndex = 0;
@@ -65,12 +301,12 @@ import 'package:flutter/material.dart';
   );
   }
 
-  }
+  }*/
 class SubPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 510,
+      width: 350,
       height: 50,
       padding: EdgeInsets.all(4.0),
     //  body:
@@ -78,7 +314,7 @@ class SubPage2 extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 ButtonTheme(
-                  minWidth: 350.0,
+                  minWidth: 250.0,
                   height: 50.0,
                   shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
                   padding: EdgeInsets.all(4.0),
@@ -93,7 +329,7 @@ class SubPage2 extends StatelessWidget {
                   ),
                 ),
                 ButtonTheme(
-                    minWidth: 157.0,
+                    minWidth: 92.0,
                     height: 50.0,
                     shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
                     child:
@@ -110,6 +346,169 @@ class SubPage2 extends StatelessWidget {
           ),
 
       ),
+    );
+  }
+}
+/*
+class SubPage3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 510,
+      height: 50,
+      padding: EdgeInsets.all(4.0),
+      //  body:
+      child: Center(
+        child: Row(
+            children: <Widget>[
+              Text('МІСТО ПОЧАТКУ ТУРУ '),
+              MyStatefulWidget(),
+            ]
+        ),
+
+      ),
+    );
+  }
+}*/
+/*
+class SubPage4 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 510,
+      height: 50,
+      padding: EdgeInsets.all(4.0),
+      //  body:
+      child: Center(
+        child:  Container(
+              height: 500,
+
+        child: Row(
+            children: <Widget>[
+              Column(
+                children:<Widget>[ Text('ДАТА ВИРУШЕННЯ '),
+               /*Container(
+                  height: 200,
+                  child: CupertinoDatePicker(
+                    mode: CupertinoDatePickerMode.date,
+                    initialDateTime: DateTime(1969, 1, 1),
+                    onDateTimeChanged: (DateTime newDateTime) {
+                      // Do something
+                    },
+                  ),
+                ),*/
+                 ]
+              ),Container(
+              height: 200,
+              child: Column(
+                  children:<Widget>[ Text('КІЛЬКІСТЬ НОЧЕЙ '),
+                  //  RangeWidget(),
+                  ]
+              ),
+              ),
+            ]
+        ),
+        ),
+      ),
+    );
+  }
+}*/
+/////////////////////////Кількість ночей повзунок//////////////////////////////////
+class MyApp2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      width: 300,
+      child: RangeWidget(),
+    );
+  }
+}
+class RangeWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _RangeWidget();
+}
+
+class _RangeWidget extends State<RangeWidget> {
+  RangeValues _currentRangeValues = const RangeValues(0, 5);
+
+  static String _valueToString(double value) {
+    return value.toStringAsFixed(1);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+
+          RangeSlider(
+          values: _currentRangeValues,
+          min: 0,
+          max: 30,
+          divisions: 30,
+          labels: RangeLabels(
+            _currentRangeValues.start.round().toString(),
+            _currentRangeValues.end.round().toString(),
+          ),
+          onChanged: (RangeValues values) {
+            setState(() {
+              _currentRangeValues = values;
+            });
+          },
+        ),
+      ],
+    );
+  }
+}
+
+
+////////////////////// Календар//////////////////////
+class MyApp1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 80,
+      child: MyHomePage1(),
+    );
+  }
+}
+class MyHomePage1 extends StatefulWidget {
+  @override
+  _MyHomePageState1 createState() => _MyHomePageState1();
+}
+class _MyHomePageState1 extends State<MyHomePage1> {
+  DateTime currentDate = DateTime.now();
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: currentDate,
+        firstDate: DateTime(2021),
+        lastDate: DateTime(2023));
+    if (pickedDate != null && pickedDate != currentDate)
+      setState(() {
+        currentDate = pickedDate;
+      });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(currentDate.toString().length > 10 ? '${currentDate.toString().substring(0, 10)}' : currentDate.toString(),
+              textDirection: TextDirection.ltr,
+              textAlign: TextAlign.center,
+              style:  TextStyle(color: Colors.black45,fontSize: 26,),),
+            RaisedButton(
+              onPressed: () => _selectDate(context),
+              child: Text('ОБЕРІТЬ ДАТУ'),
+              textColor: Colors.white,
+              color: Color.fromARGB(255, 60, 134, 247),
+            ),
+          ],
+        ),
     );
   }
 }
