@@ -1,63 +1,106 @@
 import 'package:flutter/material.dart';
+class MyBottomBarDemoFavEntry extends StatefulWidget {
+  @override
+  _MyBottomBarDemoState createState() => new _MyBottomBarDemoState();
+}
 
-class SubPage extends StatelessWidget {
+class _MyBottomBarDemoState extends State<MyBottomBarDemoFavEntry> {
+  int _pageIndex = 0;
+  late PageController _pageController;
+
+  List<Widget> tabPages = [
+    Main2(),
+    Fav(),
+    Help(),
+    Account(),
+
+  ];
+
+  @override
+  void initState(){
+    super.initState();
+    _pageController = PageController(initialPage: _pageIndex);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        // currentIndex: this.selectedIndex,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map_outlined),
-            title: Text("Головна"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            title: Text("Обране"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.help_outline),
-            title: Text("Допомога"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            title: Text("Профіль"),
-          )
-        ],
-        onTap: (int index) {
-          //  this.onTapHandler(index);
-        },
-      ),
       appBar: AppBar(
-        leading: new Container(),
-        title: Image.asset('images/entry.png', fit:BoxFit.fill),
-        backgroundColor: Color.fromARGB(255, 255, 139, 0),
+        title: Text("BottomNavigationBarFavEntry", style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.deepPurple,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('Click button to back to Main Page'),
-            ButtonTheme(
-              minWidth: 500.0,
-              height: 50.0,
-              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-              child:
-              RaisedButton(
-                textColor: Colors.white,
-                color: Color.fromARGB(255, 255, 139, 0),
-                child: Text('З Н А Й Т И   Т У Р И'),
-                onPressed: () {
-                  // TODO
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _pageIndex,
+        onTap: onTabTapped,
+        backgroundColor: Colors.white,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem( icon: Icon(Icons.home), title: Text("Home")),
+          BottomNavigationBarItem(icon: Icon(Icons.mail), title: Text("Messages")),
+          BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Profile")),
+        ],
 
+      ),
+      body: PageView(
+        children: tabPages,
+        onPageChanged: onPageChanged,
+        controller: _pageController,
+      ),
     );
   }
+  void onPageChanged(int page) {
+    setState(() {
+      this._pageIndex = page;
+    });
+  }
 
+  void onTabTapped(int index) {
+    this._pageController.animateToPage(index,duration: const Duration(milliseconds: 500),curve: Curves.easeInOut);
+  }
+}
+
+
+class Main2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.green,
+      child: Center(child: Text("Screen 1")),
+    );
+  }
+}
+
+class Fav extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.yellow,
+      child: Center(child: Text("Screen 2")),
+    );
+  }
+}
+
+class Help extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.cyan,
+      child: Center(child: Text("Screen 3")),
+    );
+  }
+}
+
+class Account extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.cyan,
+      child: Center(child: Text("Screen 3")),
+    );
+  }
 }

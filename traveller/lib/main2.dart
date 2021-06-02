@@ -1,4 +1,181 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'faventry.dart';
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyBottomBarDemo(title: 'Flutter Demo Home Page', key: null,),
+    );
+  }
+}
+
+class MyBottomBarDemo extends StatefulWidget {
+  MyBottomBarDemo({required key, required this.title}) : super(key: key);
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyBottomBarDemo> {
+  // This navigator state will be used to navigate different pages
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+  int _currentTabIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Navigator(key: _navigatorKey, onGenerateRoute: generateRoute),
+        bottomNavigationBar: _bottomNavigationBar(),
+      ),
+    );
+  }
+
+  Widget _bottomNavigationBar() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      items: [
+        BottomNavigationBarItem(icon: Icon(Icons.map), title: Text("Головна"),),
+        BottomNavigationBarItem(icon: Icon(Icons.favorite), title: Text("Обране")),
+        BottomNavigationBarItem(icon: Icon(Icons.help_outline), title: Text("Підтримка")),
+        BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Профіль"),)
+      ],
+      onTap: _onTap,
+      currentIndex: _currentTabIndex,
+    );
+  }
+
+  _onTap(int tabIndex) {
+    switch (tabIndex) {
+      case 0:
+        _navigatorKey.currentState!.pushReplacementNamed("Main");
+        break;
+      case 1:
+        _navigatorKey.currentState!.pushReplacementNamed("Favorite");
+        break;
+      case 2:
+        _navigatorKey.currentState!.pushReplacementNamed("Help");
+        break;
+      case 3:
+        _navigatorKey.currentState!.pushReplacementNamed("Account");
+        break;
+    }
+    setState(() {
+      _currentTabIndex = tabIndex;
+    });
+  }
+
+  Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case "Favorite":
+        return MaterialPageRoute(builder: (context) => Container(
+            color: Colors.blue,
+            child: Center(
+                child: Text("Favorite")
+            )
+        )
+        );
+      case "Help":
+        return MaterialPageRoute(builder: (context) => Container(color: Colors.green,child: Center(child: Text("Help"))));
+      case "Account":
+        return MaterialPageRoute(builder: (context) => Container(color: Colors.green,child: Center(child: Text("Account"))));
+      default:
+        return MaterialPageRoute(builder: (context) =>Scaffold( appBar: AppBar(
+          leading: new Container(),
+          title: Image.asset('images/travellerua.png', fit:BoxFit.fill),
+          backgroundColor: Color.fromARGB(255, 255, 139, 0),
+        ),
+            body: Center(
+            child:  Container(
+              height:1000,
+              child: Column(
+
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:  <Widget>[
+                Container(
+                  height:300,
+                  child:  Column(  children:  <Widget>[SubPage3(),
+                  Text('МІСТО, КУРОРТ'),
+                  MyStatefulWidget(),
+                  SubPage4(),],
+                  ),
+                ),
+
+                ButtonTheme(
+                  minWidth: 500.0,
+                  height: 50.0,
+                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
+                  child:
+                  RaisedButton(
+                    textColor: Colors.white,
+                    color: Color.fromARGB(255, 255, 139, 0),
+                    child: Text('З Н А Й Т И   Т У Р И'),
+                    onPressed: () {
+                      // TODO
+                    },
+                  ),
+                ),
+                SubPage2(),
+              ],
+            ),
+            ),
+            ),
+        ),
+        );
+    }
+  }
+}
+
+/// This is the stateful widget that the main application instantiates.
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+/// This is the private State class that goes with MyStatefulWidget.
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  String dropdownValue = 'Харків';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      icon: const Icon(Icons.arrow_downward),
+      iconSize: 24,
+      elevation: 16,
+      style: const TextStyle(color: Colors.deepPurple),
+      underline: Container(
+        height: 2,
+        color: Colors.deepPurpleAccent,
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          dropdownValue = newValue!;
+        });
+      },
+      items: <String>['Харків', 'Київ', 'Дніпро', 'Запоріжжя']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+}
+
+/*
 
   class SubPage extends StatelessWidget {
     int _currentIndex = 0;
@@ -65,7 +242,7 @@ import 'package:flutter/material.dart';
   );
   }
 
-  }
+  }*/
 class SubPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -110,6 +287,106 @@ class SubPage2 extends StatelessWidget {
           ),
 
       ),
+    );
+  }
+}
+class SubPage3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 510,
+      height: 50,
+      padding: EdgeInsets.all(4.0),
+      //  body:
+      child: Center(
+        child: Row(
+            children: <Widget>[
+              Text('МІСТО ПОЧАТКУ ТУРУ '),
+              MyStatefulWidget(),
+            ]
+        ),
+
+      ),
+    );
+  }
+}
+class SubPage4 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 510,
+      height: 50,
+      padding: EdgeInsets.all(4.0),
+      //  body:
+      child: Center(
+        child:  Container(
+              height: 500,
+
+        child: Row(
+            children: <Widget>[
+              Column(
+                children:<Widget>[ Text('ДАТА ВИРУШЕННЯ '),
+               /*Container(
+                  height: 200,
+                  child: CupertinoDatePicker(
+                    mode: CupertinoDatePickerMode.date,
+                    initialDateTime: DateTime(1969, 1, 1),
+                    onDateTimeChanged: (DateTime newDateTime) {
+                      // Do something
+                    },
+                  ),
+                ),*/
+                 ]
+              ),Container(
+              height: 200,
+              child: Column(
+                  children:<Widget>[ Text('КІЛЬКІСТЬ НОЧЕЙ '),
+                  //  RangeWidget(),
+                  ]
+              ),
+              ),
+            ]
+        ),
+        ),
+      ),
+    );
+  }
+}
+class RangeWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _RangeWidget();
+}
+
+class _RangeWidget extends State<RangeWidget> {
+  RangeValues _currentRangeValues = const RangeValues(0, 100);
+
+  static String _valueToString(double value) {
+    return value.toStringAsFixed(0);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+
+          RangeSlider(
+          values: _currentRangeValues,
+          min: 1,
+          max: 30,
+          divisions: 1,
+          labels: RangeLabels(
+            _currentRangeValues.start.round().toString(),
+            _currentRangeValues.end.round().toString(),
+          ),
+          onChanged: (RangeValues values) {
+            setState(() {
+              _currentRangeValues = values;
+            });
+          },
+        ),
+      ],
     );
   }
 }
