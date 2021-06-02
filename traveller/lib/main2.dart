@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:async';
 import 'faventry.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -103,16 +104,39 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
               mainAxisAlignment: MainAxisAlignment.center,
               children:  <Widget>[
                 Container(
-                  height:300,
-                  child:  Column(  children:  <Widget>[SubPage3(),
+                  height:400,
+                  width: 350,
+                   child: Column(  children:  <Widget>[
+                    //SubPage3(),
+                   Row( children: <Widget>[  Column(  children:  <Widget>[
+                    Text('  МІСТО ПОЧАТКУ ТУРУ '),
+                    MyStatefulWidget(),
+                   ]
+                   ),
+                     Text('              '),
+                     Column(  children:  <Widget>[
                   Text('МІСТО, КУРОРТ'),
                   MyStatefulWidget(),
-                  SubPage4(),],
+                 ]),
+                 // SubPage4(),
+                  ] ),
+                  Container(
+                    height: 50,
+                    child: Text('\nДАТА ВИРУШЕННЯ '),
+                  ),
+                    MyApp1(),
+                    Text('КІЛЬКІСТЬ НОЧЕЙ '),
+                    MyApp2(),
+                    Text('КІЛЬКІСТЬ ДОРОСЛИХ '),
+                    MyApp2(),
+                    Text('КІЛЬКІСТЬ ДІТЕЙ '),
+                    MyApp2(),
+                  ],
                   ),
                 ),
 
                 ButtonTheme(
-                  minWidth: 500.0,
+                  minWidth: 350.0,
                   height: 50.0,
                   shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
                   child:
@@ -154,10 +178,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       icon: const Icon(Icons.arrow_downward),
       iconSize: 24,
       elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
+      style: const TextStyle(color: Colors.black54,  fontSize: 20,),
       underline: Container(
         height: 2,
-        color: Colors.deepPurpleAccent,
+        color: Colors.black,
       ),
       onChanged: (String? newValue) {
         setState(() {
@@ -247,7 +271,7 @@ class SubPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 510,
+      width: 350,
       height: 50,
       padding: EdgeInsets.all(4.0),
     //  body:
@@ -255,7 +279,7 @@ class SubPage2 extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 ButtonTheme(
-                  minWidth: 350.0,
+                  minWidth: 250.0,
                   height: 50.0,
                   shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
                   padding: EdgeInsets.all(4.0),
@@ -270,7 +294,7 @@ class SubPage2 extends StatelessWidget {
                   ),
                 ),
                 ButtonTheme(
-                    minWidth: 157.0,
+                    minWidth: 92.0,
                     height: 50.0,
                     shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
                     child:
@@ -290,6 +314,7 @@ class SubPage2 extends StatelessWidget {
     );
   }
 }
+/*
 class SubPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -309,7 +334,8 @@ class SubPage3 extends StatelessWidget {
       ),
     );
   }
-}
+}*/
+/*
 class SubPage4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -351,6 +377,17 @@ class SubPage4 extends StatelessWidget {
       ),
     );
   }
+}*/
+/////////////////////////Кількість ночей повзунок//////////////////////////////////
+class MyApp2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      width: 300,
+      child: RangeWidget(),
+    );
+  }
 }
 class RangeWidget extends StatefulWidget {
   @override
@@ -358,10 +395,10 @@ class RangeWidget extends StatefulWidget {
 }
 
 class _RangeWidget extends State<RangeWidget> {
-  RangeValues _currentRangeValues = const RangeValues(0, 100);
+  RangeValues _currentRangeValues = const RangeValues(0, 5);
 
   static String _valueToString(double value) {
-    return value.toStringAsFixed(0);
+    return value.toStringAsFixed(1);
   }
 
   @override
@@ -373,9 +410,9 @@ class _RangeWidget extends State<RangeWidget> {
 
           RangeSlider(
           values: _currentRangeValues,
-          min: 1,
+          min: 0,
           max: 30,
-          divisions: 1,
+          divisions: 30,
           labels: RangeLabels(
             _currentRangeValues.start.round().toString(),
             _currentRangeValues.end.round().toString(),
@@ -387,6 +424,56 @@ class _RangeWidget extends State<RangeWidget> {
           },
         ),
       ],
+    );
+  }
+}
+
+
+////////////////////// Календар//////////////////////
+class MyApp1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 80,
+      child: MyHomePage1(),
+    );
+  }
+}
+class MyHomePage1 extends StatefulWidget {
+  @override
+  _MyHomePageState1 createState() => _MyHomePageState1();
+}
+class _MyHomePageState1 extends State<MyHomePage1> {
+  DateTime currentDate = DateTime.now();
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: currentDate,
+        firstDate: DateTime(2021),
+        lastDate: DateTime(2023));
+    if (pickedDate != null && pickedDate != currentDate)
+      setState(() {
+        currentDate = pickedDate;
+      });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(currentDate.toString().length > 10 ? '${currentDate.toString().substring(0, 10)}' : currentDate.toString(),
+              textDirection: TextDirection.ltr,
+              textAlign: TextAlign.center,
+              style:  TextStyle(color: Colors.black45,fontSize: 26,),),
+            RaisedButton(
+              onPressed: () => _selectDate(context),
+              child: Text('ОБЕРІТЬ ДАТУ'),
+              textColor: Colors.white,
+              color: Color.fromARGB(255, 60, 134, 247),
+            ),
+          ],
+        ),
     );
   }
 }
