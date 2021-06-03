@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 
 import 'faventry.dart';
-void main() => runApp(MyApp());
+//void main() => runApp(MyApp());
 
 
 class MyApp extends StatelessWidget {
@@ -37,7 +37,14 @@ class _MyApp777 extends State<MyApp777> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+        //leading: new Container(),
+        title: Image.asset('images/travellerua.png', fit: BoxFit.fill),
+    backgroundColor: Color.fromARGB(255, 255, 139, 0),
+    ),
+    body:Container(
       //title: 'Flutter Demo',
       /*  theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -45,7 +52,7 @@ class _MyApp777 extends State<MyApp777> {
       ),*/
       child: Column(
           children: <Widget>[
-            Text("Мої замовлення"),
+            Text("\nМої замовлення"),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 25, 20, 4),
               child: Container(
@@ -59,7 +66,7 @@ class _MyApp777 extends State<MyApp777> {
                 ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.black45)),
               ),
             ),
-            Text("Документи"),
+            Text("\nДокументи"),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 25, 20, 4),
               child: Container(
@@ -73,7 +80,7 @@ class _MyApp777 extends State<MyApp777> {
                 ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.black45)),
               ),
             ),
-            Text("Налаштування"),
+            Text("\nНалаштування"),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 25, 20, 4),
               child: Container(
@@ -85,8 +92,8 @@ class _MyApp777 extends State<MyApp777> {
                     child: Row(
 
                         children: <Widget>[
-                          Text("Отримувати сповіщення на цьому пристрої", textAlign: TextAlign.center, style: TextStyle(color: Colors.black45),),
-                          MyApp8(),
+                          Text("Отримувати сповіщення на цьому пристрої   ", textAlign: TextAlign.center, style: TextStyle(color: Colors.black45),),
+                          MyStatefulWidget1(),
                         ] ),
                   ),
                 ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.black45)),
@@ -94,10 +101,10 @@ class _MyApp777 extends State<MyApp777> {
             ),
           ]
       ),
-
+    ),
     );
   }
-
+/*
   Widget _bottomNavigationBar() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
@@ -131,7 +138,7 @@ class _MyApp777 extends State<MyApp777> {
       _currentTabIndex = tabIndex;
     });
   }
-
+*/
 
 }
 
@@ -208,7 +215,7 @@ class _MyStatefulWidgetState1 extends State<MyStatefulWidget1> {
       if (states.any(interactiveStates.contains)) {
         return Colors.blue;
       }
-      return Colors.red;
+      return Colors.orange;
     }
 
     return Checkbox(

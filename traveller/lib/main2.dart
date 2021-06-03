@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:traveller/MyApp7.dart';
 import 'package:traveller/search.dart';
 import 'dart:async';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
+//import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'faventry.dart';
 
-bool isA = true;
+bool isA = false;
+
+
 
 void main() => runApp(MyApp());
 
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
 var name = "Name1";
 var email = "aaa@gmail.com";
 var bithdate = "01-01-2000";
+var password="password";
 
 //////////////////////////////////////////////////
 class MyBottomBarDemo extends StatefulWidget {
@@ -106,8 +109,22 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
       _currentTabIndex = tabIndex;
     });
   }
-
+  Future navigateToEntry(context) async {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                MyApp11()));
+  }
+  Future navigateToReg(context) async {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                MyApp10()));
+  }
   Route<dynamic> generateRoute(RouteSettings settings) {
+
     switch (settings.name) {
       case "Favorite":
         if (isA) {
@@ -139,7 +156,7 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
                       color: Color.fromARGB(255, 255, 139, 0),
                       child: Text('Увійти'),
                       onPressed: () {
-                        // TODO
+                        navigateToEntry(context);
                       },
                     ),
                   ),
@@ -154,7 +171,7 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
                       color: Colors.white,
                       child: Text('Зареєструватися'),
                       onPressed: () {
-                        // TODO
+                        navigateToReg(context);
                       },
                     ),
                   ),
@@ -215,7 +232,7 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
                             color: Color.fromARGB(255, 255, 139, 0),
                             child: Text('Увійти'),
                             onPressed: () {
-                              // TODO
+                              navigateToEntry(context);
                             },
                           ),
                         ),
@@ -232,7 +249,7 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
                             color: Colors.white,
                             child: Text('Зареєструватися'),
                             onPressed: () {
-                              // TODO
+                              navigateToReg(context);
                             },
                           ),
                         ),
@@ -450,6 +467,13 @@ class SubPage extends StatelessWidget {
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////Забули пароль/////////////////////////////////////
 class SubPage5 extends StatelessWidget {
+  Future navigateToHelp(context) async {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                EmailHelp()));
+  }
   int _currentIndex = 0;
   final List<Widget> _children = [];
   @override
@@ -457,7 +481,7 @@ class SubPage5 extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 19, 100, 254),
       appBar: AppBar(
-        leading: new Container(),
+        //leading: new Container(),
         title: Image.asset('images/travellerua.png', fit: BoxFit.fill),
         backgroundColor: Color.fromARGB(255, 255, 139, 0),
       ),
@@ -466,7 +490,7 @@ class SubPage5 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             //Text('Click button to back to Main Page'),
-            ButtonTheme(
+    /*  ButtonTheme(
               minWidth: 300.0,
               height: 40.0,
               // buttonColor: Color.fromARGB(255, 19, 100, 254),
@@ -480,7 +504,7 @@ class SubPage5 extends StatelessWidget {
                   // TODO
                 },
               ),
-            ),
+            ),*/
             Text("\n"),
             Container(child: Image.asset('images/vl.png')),
             ButtonTheme(
@@ -518,7 +542,7 @@ class SubPage5 extends StatelessWidget {
                 child: Text('напишіть в підтримку'),
                 elevation: 0.0,
                 onPressed: () {
-                  // TODO
+                  navigateToHelp(context);
                 },
               ),
             ),
@@ -790,6 +814,13 @@ class _MyHomePageState4 extends State<MyHomePage4> {
   }
 
   Widget profileView() {
+    Future navigateToEntry(context) async {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  MyApp11()));
+    }
     return Container(
       color: Color.fromARGB(255, 19, 100, 254),
       child: Column(
@@ -804,7 +835,8 @@ class _MyHomePageState4 extends State<MyHomePage4> {
                 color: Colors.white,
               ),
               onPressed: () {
-                // TODO
+               isA=false;
+               navigateToEntry(context);
               },
             ),
           ),
@@ -946,7 +978,14 @@ class HelpTab extends StatefulWidget {
 class _HelpTabState extends State<HelpTab> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          //leading: new Container(),
+          title: Image.asset('images/travellerua.png', fit: BoxFit.fill),
+          backgroundColor: Color.fromARGB(255, 255, 139, 0),
+        ),
+        body: Container(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25.0, horizontal: 10),
         child: Column(
@@ -1021,12 +1060,13 @@ class _HelpTabState extends State<HelpTab> {
           ],
         ),
       ),
+        ),
     );
   }
 }
 
 ////////////////////////////////////////////////////////////////
-////////////////////////////////sign up/////////////////////////
+////////////////////////////////Реєстрація/////////////////////////
 class MyApp10 extends StatefulWidget {
   @override
   _State9 createState() => _State9();
@@ -1035,26 +1075,30 @@ class MyApp10 extends StatefulWidget {
 class _State9 extends State<MyApp10> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  TextEditingController emailController = TextEditingController();
+  TextEditingController cpasswordController = TextEditingController();
+  Future navigateToEntry(context) async {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                MyApp11()));
+  }
   @override
   Widget build(BuildContext context) {
+    Future navigateToAcc(context) async {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  MyApp777(
+                    title: '',
+                    key: null,
+                  )));
+    }
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 60, 134, 247),
-          title: ButtonTheme(
-              minWidth: 350.0,
-              height: 60.0,
-              // shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20)),
-              child: RaisedButton(
-                textColor: Colors.white,
-                color: Color.fromARGB(255, 60, 134, 247),
-                child: Text(
-                    'НАЗАД                                                                      '),
-                elevation: 0.0,
-                onPressed: () {
-                  // MyApp7();
-                },
-              )),
         ),
         body: Padding(
             padding: EdgeInsets.all(10),
@@ -1084,7 +1128,7 @@ class _State9 extends State<MyApp10> {
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
                     obscureText: true,
-                    controller: passwordController,
+                    controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'E-mail',
@@ -1106,7 +1150,7 @@ class _State9 extends State<MyApp10> {
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
                     obscureText: true,
-                    controller: passwordController,
+                    controller: cpasswordController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Повторіть пароль',
@@ -1122,8 +1166,12 @@ class _State9 extends State<MyApp10> {
                       color: Color.fromARGB(255, 60, 134, 247),
                       child: Text('ЗАРЕЄСТРУВАТИСЯ'),
                       onPressed: () {
+                        name=nameController.text;
+                        email=emailController.text;
+                        password=passwordController.text;
                         print(nameController.text);
                         print(passwordController.text);
+                        navigateToAcc(context);
                       },
                     )),
                 Container(
@@ -1137,7 +1185,7 @@ class _State9 extends State<MyApp10> {
                         style: TextStyle(fontSize: 16),
                       ),
                       onPressed: () {
-                        //signup screen
+                        navigateToEntry(context);
                       },
                     )
                   ],
@@ -1156,29 +1204,38 @@ class MyApp11 extends StatefulWidget {
 }
 
 class _State11 extends State<MyApp11> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    Future navigateToReg(context) async {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  MyApp10()));
+    }
+    Future navigateToAcc(context) async {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  MyApp777(
+                    title: '',
+                    key: null,
+                  )));
+    }
+    Future navigateToForg(context) async {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  SubPage5()));
+    }
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 60, 134, 247),
-          title: ButtonTheme(
-              minWidth: 350.0,
-              height: 60.0,
-              // shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20)),
-              child:
-              RaisedButton(
-                textColor: Colors.white,
-                color: Color.fromARGB(255, 60, 134, 247),
-                child: Text('НАЗАД                                                                      '),
-                elevation: 0.0,
-                onPressed: () {
-                  // MyApp7();
-                },
-              )
-          ),
         ),
         body: Padding(
             padding: EdgeInsets.all(10),
@@ -1198,7 +1255,7 @@ class _State11 extends State<MyApp11> {
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
                     obscureText: true,
-                    controller: passwordController,
+                    controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'E-mail',
@@ -1218,7 +1275,7 @@ class _State11 extends State<MyApp11> {
                 ),
                 FlatButton(
                   onPressed: (){
-                    //forgot password screen
+                    navigateToForg(context);
                   },
                   textColor: Color.fromARGB(255, 60, 134, 247),
                   child: Text('Забули пароль?'),
@@ -1232,8 +1289,16 @@ class _State11 extends State<MyApp11> {
                       color: Color.fromARGB(255, 60, 134, 247),
                       child: Text('УВІЙТИ'),
                       onPressed: () {
-                        print(nameController.text);
+
+                        print(emailController.text);
                         print(passwordController.text);
+                        if(password!=passwordController.text&&email!=emailController.text){
+                          Text('Невірний логін або пароль!');
+                        }
+                        else{
+                          isA=true;
+                          navigateToAcc(context);
+                        }
                       },
                     )),
                 Container(
@@ -1247,7 +1312,7 @@ class _State11 extends State<MyApp11> {
                             style: TextStyle(fontSize: 16),
                           ),
                           onPressed: () {
-                            //signup screen
+                            navigateToReg(context);
                           },
                         )
                       ],
@@ -1259,6 +1324,7 @@ class _State11 extends State<MyApp11> {
 }
 ////////////////////////////////////////////////////
 ////////////help/////////////////////////////////
+
 class EmailHelp extends StatefulWidget {
   @override
   _EmailHelpState createState() => _EmailHelpState();
@@ -1336,7 +1402,7 @@ class _EmailHelpState extends State<EmailHelp> {
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
                       onPressed: () async {
-                        final Email email = Email(
+                       /* final Email email = Email(
                           body: _bodyController.text,
                           subject:
                               'Traveller', //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1345,13 +1411,13 @@ class _EmailHelpState extends State<EmailHelp> {
                           ], //!!!!!!!!type here your e-mail!!!!!! example: support@gmail.com
                           //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                           isHTML: false,
-                        );
-                        try {
+                        );*/
+                       /* try {
                           await FlutterEmailSender.send(email);
                           print('Success');
                         } catch (Ex) {
                           print(Ex);
-                        }
+                        }*/
                       },
                       child: Text(
                         'Надіслати',
