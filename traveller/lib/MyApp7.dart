@@ -92,7 +92,7 @@ class _MyApp777 extends State<MyApp777> {
                     child: Row(
 
                         children: <Widget>[
-                          Text("Отримувати сповіщення на цьому пристрої   ", textAlign: TextAlign.center, style: TextStyle(color: Colors.black45),),
+                          Text("Отримувати сповіщення      ", textAlign: TextAlign.center, style: TextStyle(color: Colors.black45),),
                           MyStatefulWidget1(),
                         ] ),
                   ),

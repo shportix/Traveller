@@ -876,7 +876,7 @@ class _MyHomePageState4 extends State<MyHomePage4> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 25, 20, 4),
                   child: Container(
-                    height: 60,
+                    height: 40,
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -896,7 +896,7 @@ class _MyHomePageState4 extends State<MyHomePage4> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
                   child: Container(
-                    height: 60,
+                    height: 40,
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -916,7 +916,7 @@ class _MyHomePageState4 extends State<MyHomePage4> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 5, 20, 4),
                   child: Container(
-                    height: 60,
+                    height: 40,
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -948,7 +948,7 @@ class _MyHomePageState4 extends State<MyHomePage4> {
                 Text('\n'),
                 ButtonTheme(
                     minWidth: 350.0,
-                    height: 60.0,
+                    height: 40.0,
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(20)),
                     child: RaisedButton(
@@ -1127,7 +1127,7 @@ class _State9 extends State<MyApp10> {
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
-                    obscureText: true,
+                  //  obscureText: true,
                     controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -1254,7 +1254,7 @@ class _State11 extends State<MyApp11> {
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
-                    obscureText: true,
+                  //  obscureText: true,
                     controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -1360,7 +1360,7 @@ class _EmailHelpState extends State<EmailHelp> {
                     ),
                   ),
                   Text(
-                    'Чим я можу тобі допомогти?',
+                    'Чим я можу Вам допомогти?',
                     style: TextStyle(
                       color: Colors.white54,
                       decoration: TextDecoration.none,
@@ -1374,7 +1374,7 @@ class _EmailHelpState extends State<EmailHelp> {
                       child: TextField(
                         controller: _mailController,
                         decoration: InputDecoration(
-                          hintText: 'Твій E-mail',
+                          hintText: 'Ваш E-mail',
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                         ),
@@ -1386,7 +1386,7 @@ class _EmailHelpState extends State<EmailHelp> {
                     borderRadius: BorderRadius.circular(16),
                     elevation: 12,
                     child: Container(
-                      height: 400,
+                      height: 200,
                       child: TextField(
                         controller: _bodyController,
                         decoration: InputDecoration(

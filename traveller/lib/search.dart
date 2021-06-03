@@ -80,7 +80,7 @@ class _MySearch extends State<MySearch> {
                           );
                         },
                         child: Container(
-                          width: 160,
+                          width: 110,
                           height: 70,
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           child: Column(
@@ -113,7 +113,7 @@ class _MySearch extends State<MySearch> {
                           );
                         },
                         child: Container(
-                          width: 170,
+                          width: 120,
                           height: 70,
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           child: Column(
@@ -167,7 +167,7 @@ class _MySearch extends State<MySearch> {
                           );
                         },
                         child: Container(
-                          width: 160,
+                          width: 110,
                           padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                           child: Column(
                             children: [
@@ -188,11 +188,13 @@ class _MySearch extends State<MySearch> {
                     child: Container(
 
                       width: 300,
+                      height: 400,
                       color: Colors.white,
 
                       child: Column(
                         children: [
                           Container(
+                            height: 170,
                               margin: EdgeInsets.symmetric(vertical: 10),
                               child: RaisedButton(
                                 color: Colors.white,
@@ -206,6 +208,7 @@ class _MySearch extends State<MySearch> {
 
                           ),
                           Container(
+                              height: 170,
                               margin: EdgeInsets.symmetric(vertical: 10),
                               child: RaisedButton(
                                 color: Colors.white,
