@@ -5,10 +5,8 @@ import 'dart:async';
 import 'faventry.dart';
 
 bool isA=true;
- var name="Name1";
- var email="aaa@gmail.com";
- var bithdate="01-01-2000";
 
+//////////////////////////////////////////////////////////
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -23,7 +21,10 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+var name="Name1";
+var email="aaa@gmail.com";
+var bithdate="01-01-2000";
+//////////////////////////////////////////////////
 class MyBottomBarDemo extends StatefulWidget {
   MyBottomBarDemo({required key, required this.title}) : super(key: key);
   final String title;
@@ -795,11 +796,7 @@ class _MyHomePageState4 extends State<MyHomePage4> {
               ),
               Positioned(bottom: 1, right: 1 ,child: Container(
                 height: 40, width: 40,
-             //   child: Icon(Icons.add_a_photo, color: Colors.white,),
-              /*  decoration: BoxDecoration(
-                    color: Colors.deepOrange,
-                    borderRadius: BorderRadius.all(Radius.circular(20))
-                ),*/
+
               ))
             ],
           ),
