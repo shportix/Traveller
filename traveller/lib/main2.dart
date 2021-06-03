@@ -4,12 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:traveller/MyApp7.dart';
 import 'package:traveller/search.dart';
 import 'dart:async';
-//import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'faventry.dart';
 
 bool isA = false;
-
-
 
 void main() => runApp(MyApp());
 
@@ -32,7 +29,7 @@ class MyApp extends StatelessWidget {
 var name = "Name1";
 var email = "aaa@gmail.com";
 var bithdate = "01-01-2000";
-var password="password";
+var password = "password";
 
 //////////////////////////////////////////////////
 class MyBottomBarDemo extends StatefulWidget {
@@ -109,41 +106,29 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
       _currentTabIndex = tabIndex;
     });
   }
-  Future navigateToEntry(context) async {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                MyApp11()));
-  }
-  Future navigateToReg(context) async {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                MyApp10()));
-  }
-  Route<dynamic> generateRoute(RouteSettings settings) {
 
+  Future navigateToEntry(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp11()));
+  }
+
+  Future navigateToReg(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp10()));
+  }
+
+  Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case "Favorite":
         if (isA) {
           return MaterialPageRoute(
               builder: (context) => Container(
-                    /* color: Colors.blue,
-            child: Center(
-                child: Text("Favorite")*/
                     child: TabBarDemo(),
                   ));
         } else {
           return MaterialPageRoute(
             builder: (context) => Scaffold(
-              //  backgroundColor: Color.fromARGB(255, 255, 139, 0),
-
               body: Center(
                 child: Column(children: <Widget>[
                   Container(
-                      //color: Color.fromARGB(255, 255, 139, 0),
                       child:
                           Image.asset('images/faventry.png', fit: BoxFit.fill)),
                   ButtonTheme(
@@ -199,7 +184,6 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
                     backgroundColor: Color.fromARGB(255, 60, 134, 247),
                     body: Center(
                       child: Container(
-                        //color: Colors.green,
                         child: Center(
                           child: MyApp4(),
                         ),
@@ -209,52 +193,46 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
         } else {
           return MaterialPageRoute(
             builder: (context) => Scaffold(
-              //  backgroundColor: Color.fromARGB(255, 255, 139, 0),
               backgroundColor: Color.fromARGB(255, 142, 181, 255),
               body: Center(
-                child: Column(
-                    // color: Color.fromARGB(255, 255, 139, 0),
-
-                    children: <Widget>[
-                      Container(
-                          //color: Color.fromARGB(255, 255, 139, 0),
-                          child:
-                              Image.asset('images/er.png', fit: BoxFit.fill)),
-                      Text("\n\n"),
-                      Container(
-                        child: ButtonTheme(
-                          minWidth: 300.0,
-                          height: 50.0,
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(8.0)),
-                          child: RaisedButton(
-                            textColor: Colors.white,
-                            color: Color.fromARGB(255, 255, 139, 0),
-                            child: Text('Увійти'),
-                            onPressed: () {
-                              navigateToEntry(context);
-                            },
-                          ),
-                        ),
+                child: Column(children: <Widget>[
+                  Container(
+                      child: Image.asset('images/er.png', fit: BoxFit.fill)),
+                  Text("\n\n"),
+                  Container(
+                    child: ButtonTheme(
+                      minWidth: 300.0,
+                      height: 50.0,
+                      shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(8.0)),
+                      child: RaisedButton(
+                        textColor: Colors.white,
+                        color: Color.fromARGB(255, 255, 139, 0),
+                        child: Text('Увійти'),
+                        onPressed: () {
+                          navigateToEntry(context);
+                        },
                       ),
-                      Text("\n"),
-                      Container(
-                        child: ButtonTheme(
-                          minWidth: 300.0,
-                          height: 50.0,
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(8.0)),
-                          child: RaisedButton(
-                            textColor: Color.fromARGB(255, 60, 134, 247),
-                            color: Colors.white,
-                            child: Text('Зареєструватися'),
-                            onPressed: () {
-                              navigateToReg(context);
-                            },
-                          ),
-                        ),
+                    ),
+                  ),
+                  Text("\n"),
+                  Container(
+                    child: ButtonTheme(
+                      minWidth: 300.0,
+                      height: 50.0,
+                      shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(8.0)),
+                      child: RaisedButton(
+                        textColor: Color.fromARGB(255, 60, 134, 247),
+                        color: Colors.white,
+                        child: Text('Зареєструватися'),
+                        onPressed: () {
+                          navigateToReg(context);
+                        },
                       ),
-                    ]),
+                    ),
+                  ),
+                ]),
               ),
             ),
           );
@@ -278,7 +256,6 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
                       width: 350,
                       child: Column(
                         children: <Widget>[
-                          //SubPage3(),
                           Row(children: <Widget>[
                             Column(children: <Widget>[
                               Text('  МІСТО ПОЧАТКУ ТУРУ '),
@@ -289,7 +266,6 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
                               Text('МІСТО, КУРОРТ'),
                               MyStatefulWidget(),
                             ]),
-                            // SubPage4(),
                           ]),
                           Container(
                             height: 50,
@@ -426,7 +402,6 @@ class SubPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            //Text('Click button to back to Main Page'),
             ButtonTheme(
               minWidth: 500.0,
               height: 50.0,
@@ -469,11 +444,9 @@ class SubPage extends StatelessWidget {
 class SubPage5 extends StatelessWidget {
   Future navigateToHelp(context) async {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                EmailHelp()));
+        context, MaterialPageRoute(builder: (context) => EmailHelp()));
   }
+
   int _currentIndex = 0;
   final List<Widget> _children = [];
   @override
@@ -481,7 +454,6 @@ class SubPage5 extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 19, 100, 254),
       appBar: AppBar(
-        //leading: new Container(),
         title: Image.asset('images/travellerua.png', fit: BoxFit.fill),
         backgroundColor: Color.fromARGB(255, 255, 139, 0),
       ),
@@ -489,28 +461,11 @@ class SubPage5 extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            //Text('Click button to back to Main Page'),
-    /*  ButtonTheme(
-              minWidth: 300.0,
-              height: 40.0,
-              // buttonColor: Color.fromARGB(255, 19, 100, 254),
-              //shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-              child: RaisedButton(
-                textColor: Colors.white,
-                color: Color.fromARGB(255, 19, 100, 254),
-                child: Text(
-                    '< Забули пароль?                                              '),
-                onPressed: () {
-                  // TODO
-                },
-              ),
-            ),*/
             Text("\n"),
             Container(child: Image.asset('images/vl.png')),
             ButtonTheme(
               minWidth: 300.0,
               height: 40.0,
-              // shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
               child: RaisedButton(
                 textColor: Colors.white,
                 color: Color.fromARGB(255, 19, 100, 254),
@@ -524,8 +479,6 @@ class SubPage5 extends StatelessWidget {
             Container(
                 child: Text(
                     "\n\n\n\n\nЯкщо Ви не бачите нашого листа,\n не забудьте перевірити 'Спам', або ",
-                    //  textDirection: TextDirection.ltr,       // текст слева направо
-                    //  textAlign: TextAlign.center,            // выравнивание по центру
                     style: TextStyle(
                       color: Colors.white, // зеленый цвет текста
                       fontSize: 14, // высота шрифта 26
@@ -535,7 +488,6 @@ class SubPage5 extends StatelessWidget {
             ButtonTheme(
               minWidth: 300.0,
               height: 40.0,
-              // shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
               child: RaisedButton(
                 textColor: Colors.white,
                 color: Color.fromARGB(255, 19, 100, 254),
@@ -599,68 +551,6 @@ class SubPage2 extends StatelessWidget {
   }
 }
 
-/*
-class SubPage3 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 510,
-      height: 50,
-      padding: EdgeInsets.all(4.0),
-      //  body:
-      child: Center(
-        child: Row(
-            children: <Widget>[
-              Text('МІСТО ПОЧАТКУ ТУРУ '),
-              MyStatefulWidget(),
-            ]
-        ),
-      ),
-    );
-  }
-}*/
-/*
-class SubPage4 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 510,
-      height: 50,
-      padding: EdgeInsets.all(4.0),
-      //  body:
-      child: Center(
-        child:  Container(
-              height: 500,
-        child: Row(
-            children: <Widget>[
-              Column(
-                children:<Widget>[ Text('ДАТА ВИРУШЕННЯ '),
-               /*Container(
-                  height: 200,
-                  child: CupertinoDatePicker(
-                    mode: CupertinoDatePickerMode.date,
-                    initialDateTime: DateTime(1969, 1, 1),
-                    onDateTimeChanged: (DateTime newDateTime) {
-                      // Do something
-                    },
-                  ),
-                ),*/
-                 ]
-              ),Container(
-              height: 200,
-              child: Column(
-                  children:<Widget>[ Text('КІЛЬКІСТЬ НОЧЕЙ '),
-                  //  RangeWidget(),
-                  ]
-              ),
-              ),
-            ]
-        ),
-        ),
-      ),
-    );
-  }
-}*/
 ///////////////////////////////////////////////////////////////////////////////////
 /////////////////////////Кількість ночей повзунок//////////////////////////////////
 class MyApp2 extends StatelessWidget {
@@ -779,11 +669,6 @@ class MyApp4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //title: 'Flutter Demo',
-      /*  theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),*/
       child: MyHomePage4(),
     );
   }
@@ -816,11 +701,9 @@ class _MyHomePageState4 extends State<MyHomePage4> {
   Widget profileView() {
     Future navigateToEntry(context) async {
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  MyApp11()));
+          context, MaterialPageRoute(builder: (context) => MyApp11()));
     }
+
     return Container(
       color: Color.fromARGB(255, 19, 100, 254),
       child: Column(
@@ -835,8 +718,8 @@ class _MyHomePageState4 extends State<MyHomePage4> {
                 color: Colors.white,
               ),
               onPressed: () {
-               isA=false;
-               navigateToEntry(context);
+                isA = false;
+                navigateToEntry(context);
               },
             ),
           ),
@@ -868,7 +751,6 @@ class _MyHomePageState4 extends State<MyHomePage4> {
           Expanded(
               child: Container(
             decoration: BoxDecoration(
-              // borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               color: Colors.white,
             ),
             child: Column(
@@ -933,18 +815,6 @@ class _MyHomePageState4 extends State<MyHomePage4> {
                         border: Border.all(width: 1.0, color: Colors.black45)),
                   ),
                 ),
-                /*  Expanded(
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container( height: 70, width: 200,
-                    child: Align(child: Text('Save', style: TextStyle(color: Colors.white70, fontSize: 20),),),
-                    decoration: BoxDecoration(
-                        color: Colors.deepOrange,
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(30),)
-                    ),
-                  ),
-                ),
-              )*/
                 Text('\n'),
                 ButtonTheme(
                     minWidth: 350.0,
@@ -979,88 +849,88 @@ class _HelpTabState extends State<HelpTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          //leading: new Container(),
-          title: Image.asset('images/travellerua.png', fit: BoxFit.fill),
-          backgroundColor: Color.fromARGB(255, 255, 139, 0),
-        ),
-        body: Container(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 25.0, horizontal: 10),
-        child: Column(
-          children: <Widget>[
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => EmailHelp()));
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Icon(
-                    Icons.chat,
-                    color: Colors.amber,
-                    size: 50,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Написати в підтримку',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w500),
-                      ),
-                      Text(
-                        'Є питання? Ми відповімо!',
-                        style: TextStyle(fontSize: 18, color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                  Icon(
-                    Icons.navigate_next,
-                    color: Colors.blue,
-                    size: 50,
-                  ),
-                ],
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        //leading: new Container(),
+        title: Image.asset('images/travellerua.png', fit: BoxFit.fill),
+        backgroundColor: Color.fromARGB(255, 255, 139, 0),
+      ),
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 25.0, horizontal: 10),
+          child: Column(
+            children: <Widget>[
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => EmailHelp()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Icon(
+                      Icons.chat,
+                      color: Colors.amber,
+                      size: 50,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Написати в підтримку',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          'Є питання? Ми відповімо!',
+                          style: TextStyle(fontSize: 18, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    Icon(
+                      Icons.navigate_next,
+                      color: Colors.blue,
+                      size: 50,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Icon(
-                    Icons.corporate_fare,
-                    color: Colors.blue,
-                    size: 50,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Про нас',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w500),
-                      ),
-                      Text(
-                        'Документи, привілегії',
-                        style: TextStyle(fontSize: 18, color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                  Icon(
-                    Icons.navigate_next,
-                    color: Colors.blue,
-                    size: 50,
-                  ),
-                ],
+              InkWell(
+                onTap: () {},
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Icon(
+                      Icons.corporate_fare,
+                      color: Colors.blue,
+                      size: 50,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Про нас',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          'Документи, привілегії',
+                          style: TextStyle(fontSize: 18, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    Icon(
+                      Icons.navigate_next,
+                      color: Colors.blue,
+                      size: 50,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-        ),
     );
   }
 }
@@ -1078,24 +948,21 @@ class _State9 extends State<MyApp10> {
   TextEditingController emailController = TextEditingController();
   TextEditingController cpasswordController = TextEditingController();
   Future navigateToEntry(context) async {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                MyApp11()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp11()));
   }
+
   @override
   Widget build(BuildContext context) {
     Future navigateToAcc(context) async {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  MyApp777(
+              builder: (context) => MyApp777(
                     title: '',
                     key: null,
                   )));
     }
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 60, 134, 247),
@@ -1127,7 +994,7 @@ class _State9 extends State<MyApp10> {
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
-                  //  obscureText: true,
+                    //  obscureText: true,
                     controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -1166,9 +1033,9 @@ class _State9 extends State<MyApp10> {
                       color: Color.fromARGB(255, 60, 134, 247),
                       child: Text('ЗАРЕЄСТРУВАТИСЯ'),
                       onPressed: () {
-                        name=nameController.text;
-                        email=emailController.text;
-                        password=passwordController.text;
+                        name = nameController.text;
+                        email = emailController.text;
+                        password = passwordController.text;
                         print(nameController.text);
                         print(passwordController.text);
                         navigateToAcc(context);
@@ -1211,28 +1078,24 @@ class _State11 extends State<MyApp11> {
   Widget build(BuildContext context) {
     Future navigateToReg(context) async {
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  MyApp10()));
+          context, MaterialPageRoute(builder: (context) => MyApp10()));
     }
+
     Future navigateToAcc(context) async {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  MyApp777(
+              builder: (context) => MyApp777(
                     title: '',
                     key: null,
                   )));
     }
+
     Future navigateToForg(context) async {
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  SubPage5()));
+          context, MaterialPageRoute(builder: (context) => SubPage5()));
     }
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 60, 134, 247),
@@ -1254,7 +1117,7 @@ class _State11 extends State<MyApp11> {
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
-                  //  obscureText: true,
+                    //  obscureText: true,
                     controller: emailController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -1274,13 +1137,13 @@ class _State11 extends State<MyApp11> {
                   ),
                 ),
                 FlatButton(
-                  onPressed: (){
+                  onPressed: () {
                     navigateToForg(context);
                   },
                   textColor: Color.fromARGB(255, 60, 134, 247),
                   child: Text('Забули пароль?'),
                 ),
-              //  Text("\n"),
+                //  Text("\n"),
                 Container(
                     height: 50,
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -1289,35 +1152,34 @@ class _State11 extends State<MyApp11> {
                       color: Color.fromARGB(255, 60, 134, 247),
                       child: Text('УВІЙТИ'),
                       onPressed: () {
-
                         print(emailController.text);
                         print(passwordController.text);
-                        if(password!=passwordController.text&&email!=emailController.text){
+                        if (password != passwordController.text &&
+                            email != emailController.text) {
                           Text('Невірний логін або пароль!');
-                        }
-                        else{
-                          isA=true;
+                        } else {
+                          isA = true;
                           navigateToAcc(context);
                         }
                       },
                     )),
                 Container(
                     child: Row(
-                      children: <Widget>[
-                        Text('Ще не маєте акаунту?'),
-                        FlatButton(
-                          textColor: Color.fromARGB(255, 60, 134, 247),
-                          child: Text(
-                            'Зареєструйтеся',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          onPressed: () {
-                            navigateToReg(context);
-                          },
-                        )
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.center,
-                    ))
+                  children: <Widget>[
+                    Text('Ще не маєте акаунту?'),
+                    FlatButton(
+                      textColor: Color.fromARGB(255, 60, 134, 247),
+                      child: Text(
+                        'Зареєструйтеся',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      onPressed: () {
+                        navigateToReg(context);
+                      },
+                    )
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ))
               ],
             )));
   }
@@ -1401,24 +1263,7 @@ class _EmailHelpState extends State<EmailHelp> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
-                      onPressed: () async {
-                       /* final Email email = Email(
-                          body: _bodyController.text,
-                          subject:
-                              'Traveller', //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                          recipients: [
-                            "danilshporta@gmail.com"
-                          ], //!!!!!!!!type here your e-mail!!!!!! example: support@gmail.com
-                          //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                          isHTML: false,
-                        );*/
-                       /* try {
-                          await FlutterEmailSender.send(email);
-                          print('Success');
-                        } catch (Ex) {
-                          print(Ex);
-                        }*/
-                      },
+                      onPressed: () async {},
                       child: Text(
                         'Надіслати',
                         textAlign: TextAlign.center,

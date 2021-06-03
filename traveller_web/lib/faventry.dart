@@ -41,8 +41,8 @@ class _MyBottomBarDemoState extends State<MyBottomBarDemoFavEntry> {
         backgroundColor: Colors.white,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem( icon: Icon(Icons.home), title: Text("Home")),
-          BottomNavigationBarItem(icon: Icon(Icons.mail), title: Text("Messages")),
-          BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Profile")),
+          BottomNavigationBarItem(icon: Icon(Icons.mail), title: Text("Fav")),
+          BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Help")),
         ],
 
       ),
@@ -100,7 +100,7 @@ class Account extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.cyan,
-      child: Center(child: Text("Screen 3")),
+      child: Center(child: Text("Screen 4")),
     );
   }
 }
