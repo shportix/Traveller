@@ -7,13 +7,11 @@ import 'dart:async';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'faventry.dart';
 
-bool isA=true;
+bool isA = true;
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,18 +19,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyBottomBarDemo(title: 'Flutter Demo Home Page', key: null,),
+      home: MyBottomBarDemo(
+        title: 'Flutter Demo Home Page',
+        key: null,
+      ),
     );
   }
 }
-var name="Name1";
-var email="aaa@gmail.com";
-var bithdate="01-01-2000";
+
+var name = "Name1";
+var email = "aaa@gmail.com";
+var bithdate = "01-01-2000";
+
 //////////////////////////////////////////////////
 class MyBottomBarDemo extends StatefulWidget {
   MyBottomBarDemo({required key, required this.title}) : super(key: key);
   final String title;
-
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -40,14 +42,18 @@ class MyBottomBarDemo extends StatefulWidget {
 
 class _MyHomePageState extends State<MyBottomBarDemo> {
   Future navigateToSearch(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => MySearch(title: '', key: null,)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => MySearch(
+                  title: '',
+                  key: null,
+                )));
   }
-
 
   // This navigator state will be used to navigate different pages
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   int _currentTabIndex = 0;
-
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +69,18 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.map), title: Text("Головна"),),
-        BottomNavigationBarItem(icon: Icon(Icons.favorite), title: Text("Обране")),
-        BottomNavigationBarItem(icon: Icon(Icons.help_outline), title: Text("Підтримка")),
-        BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Профіль"),)
+        BottomNavigationBarItem(
+          icon: Icon(Icons.map),
+          title: Text("Головна"),
+        ),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.favorite), title: Text("Обране")),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.help_outline), title: Text("Підтримка")),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          title: Text("Профіль"),
+        )
       ],
       onTap: _onTap,
       currentIndex: _currentTabIndex,
@@ -96,54 +110,124 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case "Favorite":
-        if(isA) {
-          return MaterialPageRoute(builder: (context) =>
-              Container(
-                /* color: Colors.blue,
+        if (isA) {
+          return MaterialPageRoute(
+              builder: (context) => Container(
+                    /* color: Colors.blue,
             child: Center(
                 child: Text("Favorite")*/
-                child: TabBarDemo(),
-              )
+                    child: TabBarDemo(),
+                  ));
+        } else {
+          return MaterialPageRoute(
+            builder: (context) => Scaffold(
+              //  backgroundColor: Color.fromARGB(255, 255, 139, 0),
 
+              body: Center(
+                child: Column(children: <Widget>[
+                  Container(
+                      //color: Color.fromARGB(255, 255, 139, 0),
+                      child:
+                          Image.asset('images/faventry.png', fit: BoxFit.fill)),
+                  ButtonTheme(
+                    minWidth: 300.0,
+                    height: 50.0,
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(8.0)),
+                    child: RaisedButton(
+                      textColor: Colors.white,
+                      color: Color.fromARGB(255, 255, 139, 0),
+                      child: Text('Увійти'),
+                      onPressed: () {
+                        // TODO
+                      },
+                    ),
+                  ),
+                  Text("\n"),
+                  ButtonTheme(
+                    minWidth: 300.0,
+                    height: 50.0,
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(8.0)),
+                    child: RaisedButton(
+                      textColor: Color.fromARGB(255, 60, 134, 247),
+                      color: Colors.white,
+                      child: Text('Зареєструватися'),
+                      onPressed: () {
+                        // TODO
+                      },
+                    ),
+                  ),
+                ]),
+              ),
+            ),
           );
-        } else{
-          return MaterialPageRoute(builder: (context) =>
-              Scaffold(
-
-
-
-                //  backgroundColor: Color.fromARGB(255, 255, 139, 0),
-
-                body: Center(
-                  child: Column(
-
-                      children:  <Widget>[
-                        Container(
-                          //color: Color.fromARGB(255, 255, 139, 0),
-                            child: Image.asset('images/faventry.png', fit:BoxFit.fill)
+        }
+      case "Help":
+        return MaterialPageRoute(
+          builder: (context) => Container(
+            child: HelpTab(),
+          ),
+        );
+      case "Account":
+        if (isA) {
+          return MaterialPageRoute(
+              builder: (context) => Scaffold(
+                    appBar: AppBar(
+                      leading: new Container(),
+                      title: Image.asset('images/travellerua.png',
+                          fit: BoxFit.fill),
+                      backgroundColor: Color.fromARGB(255, 255, 139, 0),
+                    ),
+                    backgroundColor: Color.fromARGB(255, 60, 134, 247),
+                    body: Center(
+                      child: Container(
+                        //color: Colors.green,
+                        child: Center(
+                          child: MyApp4(),
                         ),
-                        ButtonTheme(
+                      ),
+                    ),
+                  ));
+        } else {
+          return MaterialPageRoute(
+            builder: (context) => Scaffold(
+              //  backgroundColor: Color.fromARGB(255, 255, 139, 0),
+              backgroundColor: Color.fromARGB(255, 142, 181, 255),
+              body: Center(
+                child: Column(
+                    // color: Color.fromARGB(255, 255, 139, 0),
+
+                    children: <Widget>[
+                      Container(
+                          //color: Color.fromARGB(255, 255, 139, 0),
+                          child:
+                              Image.asset('images/er.png', fit: BoxFit.fill)),
+                      Text("\n\n"),
+                      Container(
+                        child: ButtonTheme(
                           minWidth: 300.0,
                           height: 50.0,
-                          shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-                          child:
-                          RaisedButton(
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(8.0)),
+                          child: RaisedButton(
                             textColor: Colors.white,
                             color: Color.fromARGB(255, 255, 139, 0),
-
                             child: Text('Увійти'),
                             onPressed: () {
                               // TODO
                             },
                           ),
                         ),
-                        Text("\n"),
-                        ButtonTheme(
+                      ),
+                      Text("\n"),
+                      Container(
+                        child: ButtonTheme(
                           minWidth: 300.0,
                           height: 50.0,
-                          shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-                          child:
-                          RaisedButton(
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(8.0)),
+                          child: RaisedButton(
                             textColor: Color.fromARGB(255, 60, 134, 247),
                             color: Colors.white,
                             child: Text('Зареєструватися'),
@@ -152,165 +236,83 @@ class _MyHomePageState extends State<MyBottomBarDemo> {
                             },
                           ),
                         ),
-                      ]
-                  ),
-                ),
-              ),
-          );
-        }
-      case "Help":
-        return MaterialPageRoute(builder: (context) =>
-            Container(
-              child: HelpTab(),
-            ),
-        );
-      case "Account":
-        if(isA) {
-          return MaterialPageRoute(builder: (context) =>Scaffold( appBar: AppBar(
-            leading: new Container(),
-            title: Image.asset('images/travellerua.png', fit:BoxFit.fill),
-            backgroundColor: Color.fromARGB(255, 255, 139, 0),
-          ),
-            backgroundColor: Color.fromARGB(255, 60, 134, 247),
-            body: Center(
-              child:
-              Container(
-                //color: Colors.green,
-                child: Center(
-                  child: MyApp4(),
-                ),
+                      ),
+                    ]),
               ),
             ),
-          )
-          );
-        } else{
-          return MaterialPageRoute(builder: (context) =>
-              Scaffold(
-                //  backgroundColor: Color.fromARGB(255, 255, 139, 0),
-                backgroundColor: Color.fromARGB(255, 142, 181, 255),
-                body: Center(
-                  child: Column(
-                    // color: Color.fromARGB(255, 255, 139, 0),
-
-                      children:  <Widget>[
-                        Container(
-                          //color: Color.fromARGB(255, 255, 139, 0),
-                            child: Image.asset('images/er.png', fit:BoxFit.fill)
-
-                        ),Text("\n\n"),
-                        Container(
-
-                          child: ButtonTheme(
-                            minWidth: 300.0,
-                            height: 50.0,
-
-                            shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-                            child:
-                            RaisedButton(
-                              textColor: Colors.white,
-                              color: Color.fromARGB(255, 255, 139, 0),
-
-                              child: Text('Увійти'),
-                              onPressed: () {
-                                // TODO
-                              },
-                            ),
-                          ),),
-                        Text("\n"),
-                        Container(
-
-                          child: ButtonTheme(
-                            minWidth: 300.0,
-                            height: 50.0,
-                            shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-                            child:
-                            RaisedButton(
-                              textColor: Color.fromARGB(255, 60, 134, 247),
-                              color: Colors.white,
-                              child: Text('Зареєструватися'),
-                              onPressed: () {
-                                // TODO
-                              },
-                            ),
-                          ),
-                        ),
-                      ]
-                  ),
-                ),
-
-              ),
           );
         }
       default:
-
-        return MaterialPageRoute(builder: (context) =>Scaffold( appBar: AppBar(
-          leading: new Container(),
-          title: Image.asset('images/travellerua.png', fit:BoxFit.fill),
-          backgroundColor: Color.fromARGB(255, 255, 139, 0),
-        ),
-          body: Center(
-            child:  Container(
-              height:1000,
-              child: Column(
-
-                mainAxisAlignment: MainAxisAlignment.center,
-                children:  <Widget>[
-                  Container(
-                    height:400,
-                    width: 350,
-                    child: Column(  children:  <Widget>[
-                      //SubPage3(),
-                      Row( children: <Widget>[  Column(  children:  <Widget>[
-                        Text('  МІСТО ПОЧАТКУ ТУРУ '),
-                        MyStatefulWidget(),
-                      ]
+        return MaterialPageRoute(
+          builder: (context) => Scaffold(
+            appBar: AppBar(
+              leading: new Container(),
+              title: Image.asset('images/travellerua.png', fit: BoxFit.fill),
+              backgroundColor: Color.fromARGB(255, 255, 139, 0),
+            ),
+            body: Center(
+              child: Container(
+                height: 1000,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: 400,
+                      width: 350,
+                      child: Column(
+                        children: <Widget>[
+                          //SubPage3(),
+                          Row(children: <Widget>[
+                            Column(children: <Widget>[
+                              Text('  МІСТО ПОЧАТКУ ТУРУ '),
+                              MyStatefulWidget(),
+                            ]),
+                            Text('              '),
+                            Column(children: <Widget>[
+                              Text('МІСТО, КУРОРТ'),
+                              MyStatefulWidget(),
+                            ]),
+                            // SubPage4(),
+                          ]),
+                          Container(
+                            height: 50,
+                            child: Text('\nДАТА ВИРУШЕННЯ '),
+                          ),
+                          MyApp1(),
+                          Text('КІЛЬКІСТЬ НОЧЕЙ '),
+                          MyApp2(),
+                          Text('КІЛЬКІСТЬ ДОРОСЛИХ '),
+                          MyApp2(),
+                          Text('КІЛЬКІСТЬ ДІТЕЙ '),
+                          MyApp2(),
+                        ],
                       ),
-                        Text('              '),
-                        Column(  children:  <Widget>[
-                          Text('МІСТО, КУРОРТ'),
-                          MyStatefulWidget(),
-                        ]),
-                        // SubPage4(),
-                      ] ),
-                      Container(
-                        height: 50,
-                        child: Text('\nДАТА ВИРУШЕННЯ '),
+                    ),
+                    ButtonTheme(
+                      minWidth: 350.0,
+                      height: 50.0,
+                      shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(8.0)),
+                      child: RaisedButton(
+                        textColor: Colors.white,
+                        color: Color.fromARGB(255, 255, 139, 0),
+                        child: Text('З Н А Й Т И   Т У Р И'),
+                        onPressed: () {
+                          navigateToSearch(context);
+                        },
                       ),
-                      MyApp1(),
-                      Text('КІЛЬКІСТЬ НОЧЕЙ '),
-                      MyApp2(),
-                      Text('КІЛЬКІСТЬ ДОРОСЛИХ '),
-                      MyApp2(),
-                      Text('КІЛЬКІСТЬ ДІТЕЙ '),
-                      MyApp2(),
-                    ],
                     ),
-                  ),
-
-                  ButtonTheme(
-                    minWidth: 350.0,
-                    height: 50.0,
-                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-                    child:
-                    RaisedButton(
-                      textColor: Colors.white,
-                      color: Color.fromARGB(255, 255, 139, 0),
-                      child: Text('З Н А Й Т И   Т У Р И'),
-                      onPressed: () {
-                        navigateToSearch(context);
-                      },
-                    ),
-                  ),
-                  SubPage2(),
-                ],
+                    SubPage2(),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
         );
     }
   }
 }
+
 ////////////////////////////////////////////////////////////
 //////////////////////Обране ///////////////////////////////
 class TabBarDemo extends StatelessWidget {
@@ -321,10 +323,9 @@ class TabBarDemo extends StatelessWidget {
         length: 4,
         child: Scaffold(
           appBar: AppBar(
-            title: Image.asset('images/travellerua.png', fit:BoxFit.fill),
+            title: Image.asset('images/travellerua.png', fit: BoxFit.fill),
             backgroundColor: Color.fromARGB(255, 255, 139, 0),
-            bottom:
-            TabBar(
+            bottom: TabBar(
               tabs: [
                 Tab(child: Text("ТУРИ")),
                 Tab(icon: Text("БІЛЕТИ")),
@@ -346,6 +347,7 @@ class TabBarDemo extends StatelessWidget {
     );
   }
 }
+
 //////////////////////Обране ///////////////////////////////
 ////////////////////////////////////////////////////////////
 /// This is the stateful widget that the main application instantiates.
@@ -366,7 +368,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       icon: const Icon(Icons.arrow_downward),
       iconSize: 24,
       elevation: 16,
-      style: const TextStyle(color: Colors.black54,  fontSize: 20,),
+      style: const TextStyle(
+        color: Colors.black54,
+        fontSize: 20,
+      ),
       underline: Container(
         height: 2,
         color: Colors.black,
@@ -386,6 +391,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 }
+
 ///////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////Вхід Реєстрація/////////////////////////////////
 class SubPage extends StatelessWidget {
@@ -394,10 +400,9 @@ class SubPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         leading: new Container(),
-        title: Image.asset('images/travellerua.png', fit:BoxFit.fill),
+        title: Image.asset('images/travellerua.png', fit: BoxFit.fill),
         backgroundColor: Color.fromARGB(255, 255, 139, 0),
       ),
       body: Center(
@@ -408,9 +413,9 @@ class SubPage extends StatelessWidget {
             ButtonTheme(
               minWidth: 500.0,
               height: 50.0,
-              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-              child:
-              RaisedButton(
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(8.0)),
+              child: RaisedButton(
                 textColor: Color.fromARGB(255, 60, 134, 247),
                 color: Colors.white,
                 child: Text('Увійти'),
@@ -422,9 +427,9 @@ class SubPage extends StatelessWidget {
             ButtonTheme(
               minWidth: 500.0,
               height: 50.0,
-              shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-              child:
-              RaisedButton(
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(8.0)),
+              child: RaisedButton(
                 textColor: Colors.white,
                 color: Color.fromARGB(255, 255, 139, 0),
                 child: Text('Зареєструватися'),
@@ -436,11 +441,10 @@ class SubPage extends StatelessWidget {
           ],
         ),
       ),
-
     );
   }
-
 }
+
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
@@ -454,7 +458,7 @@ class SubPage5 extends StatelessWidget {
       backgroundColor: Color.fromARGB(255, 19, 100, 254),
       appBar: AppBar(
         leading: new Container(),
-        title: Image.asset('images/travellerua.png', fit:BoxFit.fill),
+        title: Image.asset('images/travellerua.png', fit: BoxFit.fill),
         backgroundColor: Color.fromARGB(255, 255, 139, 0),
       ),
       body: Center(
@@ -467,11 +471,11 @@ class SubPage5 extends StatelessWidget {
               height: 40.0,
               // buttonColor: Color.fromARGB(255, 19, 100, 254),
               //shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-              child:
-              RaisedButton(
+              child: RaisedButton(
                 textColor: Colors.white,
                 color: Color.fromARGB(255, 19, 100, 254),
-                child: Text('< Забули пароль?                                              '),
+                child: Text(
+                    '< Забули пароль?                                              '),
                 onPressed: () {
                   // TODO
                 },
@@ -483,8 +487,7 @@ class SubPage5 extends StatelessWidget {
               minWidth: 300.0,
               height: 40.0,
               // shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-              child:
-              RaisedButton(
+              child: RaisedButton(
                 textColor: Colors.white,
                 color: Color.fromARGB(255, 19, 100, 254),
                 child: Text('Відправити листа ще раз'),
@@ -494,21 +497,22 @@ class SubPage5 extends StatelessWidget {
                 },
               ),
             ),
-            Container(child: Text("\n\n\n\n\nЯкщо Ви не бачите нашого листа,\n не забудьте перевірити 'Спам', або ",
-                //  textDirection: TextDirection.ltr,       // текст слева направо
-                //  textAlign: TextAlign.center,            // выравнивание по центру
-                style: TextStyle(color: Colors.white,   // зеленый цвет текста
-                  fontSize: 14,                       // высота шрифта 26
-                  backgroundColor: Color.fromARGB(255, 19, 100, 254),    // черный цвет фона текста
-                )
-            )
-            ),
+            Container(
+                child: Text(
+                    "\n\n\n\n\nЯкщо Ви не бачите нашого листа,\n не забудьте перевірити 'Спам', або ",
+                    //  textDirection: TextDirection.ltr,       // текст слева направо
+                    //  textAlign: TextAlign.center,            // выравнивание по центру
+                    style: TextStyle(
+                      color: Colors.white, // зеленый цвет текста
+                      fontSize: 14, // высота шрифта 26
+                      backgroundColor: Color.fromARGB(
+                          255, 19, 100, 254), // черный цвет фона текста
+                    ))),
             ButtonTheme(
               minWidth: 300.0,
               height: 40.0,
               // shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-              child:
-              RaisedButton(
+              child: RaisedButton(
                 textColor: Colors.white,
                 color: Color.fromARGB(255, 19, 100, 254),
                 child: Text('напишіть в підтримку'),
@@ -521,12 +525,9 @@ class SubPage5 extends StatelessWidget {
           ],
         ),
       ),
-
     );
   }
-
 }
-
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
@@ -539,44 +540,41 @@ class SubPage2 extends StatelessWidget {
       padding: EdgeInsets.all(4.0),
       //  body:
       child: Center(
-        child: Row(
-            children: <Widget>[
-              ButtonTheme(
-                minWidth: 250.0,
-                height: 50.0,
-                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-                padding: EdgeInsets.all(4.0),
-                child:
-                RaisedButton(
-                  textColor: Colors.white,
-                  color: Color.fromARGB(255, 60, 134, 247),
-                  child: Text('ПРИДБАТИ КВИТОК'),
-                  onPressed: () {
-                    // TODO
-                  },
-                ),
-              ),
-              ButtonTheme(
-                  minWidth: 92.0,
-                  height: 50.0,
-                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
-                  child:
-                  RaisedButton(
-                    textColor: Colors.white,
-                    color: Color.fromARGB(255, 60, 134, 247),
-                    child: Text('І Н Ш Е'),
-                    onPressed: () {
-                      // TODO
-                    },
-                  )
-              )
-            ]
-        ),
-
+        child: Row(children: <Widget>[
+          ButtonTheme(
+            minWidth: 250.0,
+            height: 50.0,
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(8.0)),
+            padding: EdgeInsets.all(4.0),
+            child: RaisedButton(
+              textColor: Colors.white,
+              color: Color.fromARGB(255, 60, 134, 247),
+              child: Text('ПРИДБАТИ КВИТОК'),
+              onPressed: () {
+                // TODO
+              },
+            ),
+          ),
+          ButtonTheme(
+              minWidth: 92.0,
+              height: 50.0,
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(8.0)),
+              child: RaisedButton(
+                textColor: Colors.white,
+                color: Color.fromARGB(255, 60, 134, 247),
+                child: Text('І Н Ш Е'),
+                onPressed: () {
+                  // TODO
+                },
+              ))
+        ]),
       ),
     );
   }
 }
+
 /*
 class SubPage3 extends StatelessWidget {
   @override
@@ -642,7 +640,6 @@ class SubPage4 extends StatelessWidget {
 ///////////////////////////////////////////////////////////////////////////////////
 /////////////////////////Кількість ночей повзунок//////////////////////////////////
 class MyApp2 extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -652,6 +649,7 @@ class MyApp2 extends StatelessWidget {
     );
   }
 }
+
 class RangeWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _RangeWidget();
@@ -670,7 +668,6 @@ class _RangeWidget extends State<RangeWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-
         RangeSlider(
           values: _currentRangeValues,
           min: 0,
@@ -702,10 +699,12 @@ class MyApp1 extends StatelessWidget {
     );
   }
 }
+
 class MyHomePage1 extends StatefulWidget {
   @override
   _MyHomePageState1 createState() => _MyHomePageState1();
 }
+
 class _MyHomePageState1 extends State<MyHomePage1> {
   DateTime currentDate = DateTime.now();
   Future<void> _selectDate(BuildContext context) async {
@@ -719,16 +718,24 @@ class _MyHomePageState1 extends State<MyHomePage1> {
         currentDate = pickedDate;
       });
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text(currentDate.toString().length > 10 ? '${currentDate.toString().substring(0, 10)}' : currentDate.toString(),
+          Text(
+            currentDate.toString().length > 10
+                ? '${currentDate.toString().substring(0, 10)}'
+                : currentDate.toString(),
             textDirection: TextDirection.ltr,
             textAlign: TextAlign.center,
-            style:  TextStyle(color: Colors.black45,fontSize: 26,),),
+            style: TextStyle(
+              color: Colors.black45,
+              fontSize: 26,
+            ),
+          ),
           RaisedButton(
             onPressed: () => _selectDate(context),
             child: Text('ОБЕРІТЬ ДАТУ'),
@@ -740,6 +747,7 @@ class _MyHomePageState1 extends State<MyHomePage1> {
     );
   }
 }
+
 /////////////////////////////////////////////////////////////
 //////////////////////////Профіль користувача/////////////////
 class MyApp4 extends StatelessWidget {
@@ -764,54 +772,69 @@ class MyHomePage4 extends StatefulWidget {
 
 class _MyHomePageState4 extends State<MyHomePage4> {
   Future navigateToMyApp7(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp777(title: '', key: null,)));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => MyApp777(
+                  title: '',
+                  key: null,
+                )));
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-        body: profileView()// This trailing comma makes auto-formatting nicer for build methods.
-    );
+        body:
+            profileView() // This trailing comma makes auto-formatting nicer for build methods.
+        );
   }
 
   Widget profileView() {
     return Container(
-
       color: Color.fromARGB(255, 19, 100, 254),
       child: Column(
-
         children: <Widget>[
-
           Padding(
             padding: EdgeInsets.fromLTRB(290, 10, 0, 0),
             child: RaisedButton(
               color: Color.fromARGB(255, 19, 100, 254),
               elevation: 0.0,
-              child: Icon(Icons.exit_to_app, color: Colors.white,),
+              child: Icon(
+                Icons.exit_to_app,
+                color: Colors.white,
+              ),
               onPressed: () {
                 // TODO
               },
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0,0 ,50),
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
             child: Stack(
-
               children: <Widget>[
-
                 CircleAvatar(
                   radius: 70,
-                  child: ClipOval(child: Image.asset('images/acc.png', height: 150, width: 150, fit: BoxFit.cover,),),
+                  child: ClipOval(
+                    child: Image.asset(
+                      'images/acc.png',
+                      height: 150,
+                      width: 150,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-                Positioned(bottom: 1, right: 1 ,child: Container(
-                  height: 40, width: 40,
-
-                ))
+                Positioned(
+                    bottom: 1,
+                    right: 1,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                    ))
               ],
             ),
           ),
-          Expanded(child: Container(
+          Expanded(
+              child: Container(
             decoration: BoxDecoration(
               // borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               color: Colors.white,
@@ -826,9 +849,16 @@ class _MyHomePageState4 extends State<MyHomePage4> {
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(name, textAlign: TextAlign.center, style: TextStyle(color: Colors.black45),),
+                        child: Text(
+                          name,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black45),
+                        ),
                       ),
-                    ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.black45)),
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(width: 1.0, color: Colors.black45)),
                   ),
                 ),
                 Padding(
@@ -839,9 +869,16 @@ class _MyHomePageState4 extends State<MyHomePage4> {
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(email, textAlign: TextAlign.center, style: TextStyle(color: Colors.black45),),
+                        child: Text(
+                          email,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black45),
+                        ),
                       ),
-                    ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.black45)),
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(width: 1.0, color: Colors.black45)),
                   ),
                 ),
                 Padding(
@@ -852,9 +889,16 @@ class _MyHomePageState4 extends State<MyHomePage4> {
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(bithdate, textAlign: TextAlign.center,  style: TextStyle(color: Colors.black45),),
+                        child: Text(
+                          bithdate,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.black45),
+                        ),
                       ),
-                    ), decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20)),border: Border.all(width: 1.0, color: Colors.black45)),
+                    ),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        border: Border.all(width: 1.0, color: Colors.black45)),
                   ),
                 ),
                 /*  Expanded(
@@ -873,24 +917,25 @@ class _MyHomePageState4 extends State<MyHomePage4> {
                 ButtonTheme(
                     minWidth: 350.0,
                     height: 60.0,
-                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20)),
-                    child:
-                    RaisedButton(
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(20)),
+                    child: RaisedButton(
                       textColor: Colors.white,
                       color: Color.fromARGB(255, 60, 134, 247),
                       child: Text('ДОДАТКОВО'),
                       onPressed: () {
                         navigateToMyApp7(context);
                       },
-                    )
-                )
+                    ))
               ],
             ),
           ))
         ],
-      ),);
+      ),
+    );
   }
 }
+
 /////////////////////////////////////////////////////////////////////////
 ///////////////////////////ДОДАТКОВО//////////////////////////////////////////////
 class HelpTab extends StatefulWidget {
@@ -980,6 +1025,131 @@ class _HelpTabState extends State<HelpTab> {
   }
 }
 
+////////////////////////////////////////////////////////////////
+////////////////////////////////sign up/////////////////////////
+class MyApp10 extends StatefulWidget {
+  @override
+  _State9 createState() => _State9();
+}
+
+class _State9 extends State<MyApp10> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 60, 134, 247),
+          title: ButtonTheme(
+              minWidth: 350.0,
+              height: 60.0,
+              // shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20)),
+              child: RaisedButton(
+                textColor: Colors.white,
+                color: Color.fromARGB(255, 60, 134, 247),
+                child: Text(
+                    'НАЗАД                                                                      '),
+                elevation: 0.0,
+                onPressed: () {
+                  // MyApp7();
+                },
+              )),
+        ),
+        body: Padding(
+            padding: EdgeInsets.all(10),
+            child: ListView(
+              children: <Widget>[
+                Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'РЕЄСТРАЦІЯ',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 60, 134, 247),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 30),
+                    )),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  child: TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Ім'я користувача",
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: TextField(
+                    obscureText: true,
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'E-mail',
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: TextField(
+                    obscureText: true,
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Введіть пароль',
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: TextField(
+                    obscureText: true,
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Повторіть пароль',
+                    ),
+                  ),
+                ),
+                Text("\n"),
+                Container(
+                    height: 50,
+                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    child: RaisedButton(
+                      textColor: Colors.white,
+                      color: Color.fromARGB(255, 60, 134, 247),
+                      child: Text('ЗАРЕЄСТРУВАТИСЯ'),
+                      onPressed: () {
+                        print(nameController.text);
+                        print(passwordController.text);
+                      },
+                    )),
+                Container(
+                    child: Row(
+                  children: <Widget>[
+                    Text('Вже маєте акаунт?'),
+                    FlatButton(
+                      textColor: Color.fromARGB(255, 60, 134, 247),
+                      child: Text(
+                        'Увійдіть',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      onPressed: () {
+                        //signup screen
+                      },
+                    )
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ))
+              ],
+            )));
+  }
+}
+
+////////////////////////////////////////////////////
+////////////help/////////////////////////////////
 class EmailHelp extends StatefulWidget {
   @override
   _EmailHelpState createState() => _EmailHelpState();
@@ -988,8 +1158,6 @@ class EmailHelp extends StatefulWidget {
 class _EmailHelpState extends State<EmailHelp> {
   TextEditingController _mailController = TextEditingController();
   TextEditingController _bodyController = TextEditingController();
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -1061,8 +1229,11 @@ class _EmailHelpState extends State<EmailHelp> {
                       onPressed: () async {
                         final Email email = Email(
                           body: _bodyController.text,
-                          subject: 'Traveller',               //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                          recipients: ["danilshporta@gmail.com"], //!!!!!!!!type here your e-mail!!!!!! example: support@gmail.com
+                          subject:
+                              'Traveller', //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                          recipients: [
+                            "danilshporta@gmail.com"
+                          ], //!!!!!!!!type here your e-mail!!!!!! example: support@gmail.com
                           //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                           isHTML: false,
                         );
@@ -1079,8 +1250,8 @@ class _EmailHelpState extends State<EmailHelp> {
                       ),
                       style: ButtonStyle(
                         backgroundColor:
-                        MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
+                            MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
                             return Colors.deepOrange;
                           },
                         ),
