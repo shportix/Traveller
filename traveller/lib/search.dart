@@ -51,7 +51,6 @@ class _MySearch extends State<MySearch> {
               mainAxisAlignment: MainAxisAlignment.start,
               children:  <Widget>[
                 Container(
-                  width: 900,
                   height: 70,
                   color: Colors.blue,
                   child: Row(
@@ -184,6 +183,46 @@ class _MySearch extends State<MySearch> {
                     ],
                   ),
                 ),
+                SingleChildScrollView(
+                  child: Center(
+                    child: Container(
+
+                      width: 300,
+                      color: Colors.white,
+
+                      child: Column(
+                        children: [
+                          Container(
+                              margin: EdgeInsets.symmetric(vertical: 10),
+                              child: RaisedButton(
+                                color: Colors.white,
+                            //textColor: Colors.white,
+                                // shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
+                                 child: Image.asset('images/Hotel1.png', fit:BoxFit.fill),
+                                onPressed: () {
+
+                                   },
+                              )
+
+                          ),
+                          Container(
+                              margin: EdgeInsets.symmetric(vertical: 10),
+                              child: RaisedButton(
+                                color: Colors.white,
+
+                                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
+                                child: Image.asset('images/Hotel2.png', fit:BoxFit.fill),
+                                onPressed: () {
+
+                                  },
+                              )
+
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                )
               ],
             ),
           ),
