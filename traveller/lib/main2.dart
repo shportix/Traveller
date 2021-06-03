@@ -1148,6 +1148,115 @@ class _State9 extends State<MyApp10> {
   }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//////////////////////////Авторизація///////////////////////////////////////////////
+class MyApp11 extends StatefulWidget {
+  @override
+  _State11 createState() => _State11();
+}
+
+class _State11 extends State<MyApp11> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 60, 134, 247),
+          title: ButtonTheme(
+              minWidth: 350.0,
+              height: 60.0,
+              // shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20)),
+              child:
+              RaisedButton(
+                textColor: Colors.white,
+                color: Color.fromARGB(255, 60, 134, 247),
+                child: Text('НАЗАД                                                                      '),
+                elevation: 0.0,
+                onPressed: () {
+                  // MyApp7();
+                },
+              )
+          ),
+        ),
+        body: Padding(
+            padding: EdgeInsets.all(10),
+            child: ListView(
+              children: <Widget>[
+                Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'АВТОРИЗАЦІЯ',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 60, 134, 247),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 30),
+                    )),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: TextField(
+                    obscureText: true,
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'E-mail',
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: TextField(
+                    obscureText: true,
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Введіть пароль',
+                    ),
+                  ),
+                ),
+                FlatButton(
+                  onPressed: (){
+                    //forgot password screen
+                  },
+                  textColor: Color.fromARGB(255, 60, 134, 247),
+                  child: Text('Забули пароль?'),
+                ),
+              //  Text("\n"),
+                Container(
+                    height: 50,
+                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    child: RaisedButton(
+                      textColor: Colors.white,
+                      color: Color.fromARGB(255, 60, 134, 247),
+                      child: Text('УВІЙТИ'),
+                      onPressed: () {
+                        print(nameController.text);
+                        print(passwordController.text);
+                      },
+                    )),
+                Container(
+                    child: Row(
+                      children: <Widget>[
+                        Text('Ще не маєте акаунту?'),
+                        FlatButton(
+                          textColor: Color.fromARGB(255, 60, 134, 247),
+                          child: Text(
+                            'Зареєструйтеся',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          onPressed: () {
+                            //signup screen
+                          },
+                        )
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    ))
+              ],
+            )));
+  }
+}
 ////////////////////////////////////////////////////
 ////////////help/////////////////////////////////
 class EmailHelp extends StatefulWidget {
