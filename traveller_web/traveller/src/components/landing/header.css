@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.inLine div {
+  display: inline;
+}
+.inLine {
+  display: inline;
+  float: right;
+  margin-top: 20px;
+}
+.logo {
+  margin-left: 125px;
+  width: 140px;
+  height: 140px;
+  margin-top: -30px;
+}
+header {
+  background-color: #f8bd64;
+  height: 85px;
+}
+header h1 {
+  letter-spacing: 4px;
+  color:#4b391e;
+  font-size: 38px;
+  font-weight: 500;
+  display: inline-block;
+  margin-left: 50px;
+  margin-top: 20px;
+}
